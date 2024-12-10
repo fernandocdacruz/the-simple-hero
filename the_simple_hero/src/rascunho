@@ -1,0 +1,4 @@
+* Colocar uma opção de listar a beg, para ver a quantidade de ouro atual. Ou somente um status atual, para ver o ouro, nivel e energia
+* Algumas validações podem ser encapsuladas dentro da classe Personagem. Por exemplo, verificação de ouro suficiente para a hospedagem.
+* Se no futuro houver mais ações no vilarejo, considere usar o padrão Strategy para gerenciar as opções do menu.
+* Comece o jogo com um breve texto que contextualize o jogador na aventura.
