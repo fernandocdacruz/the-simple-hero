@@ -4,7 +4,9 @@ import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
+import entities.Hospedaria;
 import entities.Personagem;
+import entities.Vilarejo;
 
 public class Main {
 
@@ -14,13 +16,16 @@ public class Main {
 		try (Scanner scanner = new Scanner(System.in)) {
 			System.out.println("\nTHE SIMPLE HERO\n");
 			System.out.println("\nVamos criar o seu herói!");
-			do {
-				Personagem personagem = obterPersonagem(scanner);
-				System.out.println("\nHerói criado!\n");
-				System.out.println(personagem);
-			} while (confirmarPersonagem(scanner));
+			Personagem personagem = obterPersonagem(scanner);
+			System.out.println("\n\nHerói criado!\n");
+			System.out.println(personagem);
+			while (personagem.confirmarPersonagem(scanner)) {
+				obterPersonagem(scanner);
+			}
+			iniciarJogo(scanner, personagem);
+			System.out.println("\nGAME OVER");
+			
 		}
-
 	}
 	
 	public static Personagem obterPersonagem(Scanner scanner) {
@@ -52,7 +57,7 @@ public class Main {
 					scanner.nextLine();
 					throw new IllegalArgumentException("\n\nDistribuição de pontos inválida. Tente novamente");
 				}
-				personagem = new Personagem(nome, energia, ataque, defesa);
+				personagem = new Personagem(nome, energia, energia, ataque, defesa, 20);
 				personagemValido = true;
 			} catch (InputMismatchException e) {
 				System.out.println("\nInput inválido. Tente novamente.");
@@ -65,26 +70,21 @@ public class Main {
 		return personagem;
 	}
 	
-	public static boolean confirmarPersonagem(Scanner scanner) {
-		boolean valido = true;
-		boolean opValida = false;
-		while (!opValida) {
-			try {
-				System.out.print("\nDeseja alterar o personagem? Digite 's' para sim e 'n' para não: ");
-				char op = scanner.next().toLowerCase().charAt(0);
-				if (op != 's' && op != 'n') {
-					throw new IllegalArgumentException("\nOpção inválida. Tente novamente");
-				}
-				scanner.nextLine();
-				if (op == 'n') {
-					valido = false;
-				}
-				opValida = true;
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-			}
+	public static void iniciarJogo(Scanner scanner, Personagem personagem) {
+		Vilarejo vilarejo = new Vilarejo(new Hospedaria());
+		System.out.println(vilarejo.iniciarAventura());
+	    int opVilarejo = 0;
+		do {
+	    	vilarejo.mostrarMenu();
+			opVilarejo = vilarejo.obterOpMenu(scanner);
+			executarOpJogo(opVilarejo, vilarejo, personagem, scanner);
+		} while (opVilarejo != 0);
+	}
+	
+	public static void executarOpJogo(int opMenu, Vilarejo vilarejo, Personagem personagem, Scanner scanner) {
+		switch (opMenu) {
+		case 1: vilarejo.getHospedaria().recuperarEnergia(scanner, personagem);
 		}
-		return valido;
 	}
 
 }
