@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Vilarejo {
 
 	private Hospedaria hospedaria;
-	
+
 	public Vilarejo(Hospedaria hospedaria) {
 		this.hospedaria = hospedaria;
 	}
@@ -19,18 +19,16 @@ public class Vilarejo {
 		this.hospedaria = hospedaria;
 	}
 
-
-
 	public String iniciarAventura() {
 		return "\nBem vindo ao Vilarejo Satolep!! Boa sorte na sua jornada.";
 	}
-	
+
 	public void mostrarMenu() {
 		System.out.println("\nOnde você deseja ir:");
 		System.out.println("\n[0] - Sair do jogo");
 		System.out.println("[1] - Hospedaria Satolep");
 	}
-	
+
 	public int obterOpMenu(Scanner scanner) {
 		int op = 0;
 		boolean inputValido = false;

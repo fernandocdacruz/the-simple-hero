@@ -1,26 +1,22 @@
 package entities;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Personagem {
-	
+
 	private String nome;
-	private Integer energiaTotal;
-	private Integer energiaAtual;
+	private Energia energia;
 	private Integer ataque;
 	private Integer defesa;
-	private Integer ouro;
-	
+	private Ouro ouro;
+
 	public Personagem() {
-		
+
 	}
 
-	public Personagem(String nome, Integer energiaTotal, Integer energiaAtual, Integer ataque, Integer defesa,
-			Integer ouro) {
+	public Personagem(String nome, Energia energia, Integer ataque, Integer defesa, Ouro ouro) {
 		this.nome = nome;
-		this.energiaTotal = energiaTotal;
-		this.energiaAtual = energiaAtual;
+		this.energia = energia;
 		this.ataque = ataque;
 		this.defesa = defesa;
 		this.ouro = ouro;
@@ -29,21 +25,17 @@ public class Personagem {
 	public String getNome() {
 		return nome;
 	}
-	
-	public Integer getEnergiaTotal() {
-		return energiaTotal;
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public void setEnergiaTotal(Integer energiaTotal) {
-		this.energiaTotal = energiaTotal;
+	public Energia getEnergia() {
+		return energia;
 	}
 
-	public Integer getEnergiaAtual() {
-		return energiaAtual;
-	}
-
-	public void setEnergiaAtual(Integer energiaAtual) {
-		this.energiaAtual = energiaAtual;
+	public void setEnergia(Energia energia) {
+		this.energia = energia;
 	}
 
 	public Integer getAtaque() {
@@ -62,22 +54,19 @@ public class Personagem {
 		this.defesa = defesa;
 	}
 
-	public Integer getOuro() {
+	public Ouro getOuro() {
 		return ouro;
 	}
 
-	public void setOuro(Integer ouro) {
+	public void setOuro(Ouro ouro) {
 		this.ouro = ouro;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public String toString() {
+		return "Nome: " + getNome() + getEnergia().toString() + "\nAtaque: " + getAtaque() + "\nDefesa: " + getDefesa()
+				+ getOuro().toString();
 	}
 
-	public String toString() {
-		return "Nome: " + getNome() + "\nEnergia: " + getEnergiaTotal() + "\nAtaque: " + getAtaque() + "\nDefesa: " + getDefesa();
-	}
-	
 	public boolean confirmarPersonagem(Scanner scanner) {
 		boolean valido = true;
 		boolean opValida = false;
@@ -99,5 +88,5 @@ public class Personagem {
 		}
 		return valido;
 	}
-	
- }
+
+}
