@@ -8,15 +8,22 @@ public class Hospedaria {
 	}
 
 	public void recuperarEnergia(Scanner scanner, Personagem personagem) {
-		try {
-			System.out.println("\nBem vindo a hospedaria Satolep!!");
-			System.out.println("Gostaria de passar uma noite aqui e descansar com qualidade?");
-			System.out.println("Energia: " + personagem.getEnergia().mostrarDiferencaEnergia());
-			System.out.println("O valor é de 10 moedas de ouro!");
-			System.out.print("\nDigite 's' para sim e 'n' para não: ");
-			char op = scanner.next().toString().charAt(0);
-			if (op != 's' && op != 'n') {
-				throw new IllegalArgumentException("\nOpção inválida. Tente novamente");
+		boolean inputValido = false;
+		char op = ' ';
+		while (!inputValido) {
+			try {
+				System.out.println("\nBem vindo a hospedaria Satolep!!");
+				System.out.println("Gostaria de passar uma noite aqui e descansar com qualidade?");
+				System.out.println("Energia: " + personagem.getEnergia().mostrarDiferencaEnergia());
+				System.out.println("O valor é de 10 moedas de ouro!");
+				System.out.print("\nDigite 's' para sim e 'n' para não: ");
+				op = scanner.next().toString().charAt(0);
+				if (op != 's' && op != 'n') {
+					throw new IllegalArgumentException("\nOpção inválida. Tente novamente");
+				}
+				inputValido = true;
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
 			}
 			if (op == 's') {
 				if (personagem.getOuro().testarQuantidadeDeOuro(10)) {
@@ -40,8 +47,6 @@ public class Hospedaria {
 				int indice = (int) (Math.random() * frasesAtendente.length);
 				System.out.println("\n" + frasesAtendente[indice]);
 			}
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
 		}
 	}
 }

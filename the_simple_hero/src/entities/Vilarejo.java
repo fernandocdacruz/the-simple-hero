@@ -6,9 +6,11 @@ import java.util.Scanner;
 public class Vilarejo {
 
 	private Hospedaria hospedaria;
+	private Cigana cigana;
 
-	public Vilarejo(Hospedaria hospedaria) {
+	public Vilarejo(Hospedaria hospedaria, Cigana cigana) {
 		this.hospedaria = hospedaria;
+		this.cigana = cigana;
 	}
 
 	public Hospedaria getHospedaria() {
@@ -17,6 +19,14 @@ public class Vilarejo {
 
 	public void setHospedaria(Hospedaria hospedaria) {
 		this.hospedaria = hospedaria;
+	}
+	
+	public Cigana getCigana() {
+		return cigana;
+	}
+
+	public void setCigana(Cigana cigana) {
+		this.cigana = cigana;
 	}
 
 	public String iniciarAventura() {
@@ -27,6 +37,7 @@ public class Vilarejo {
 		System.out.println("\nOnde você deseja ir:");
 		System.out.println("\n[0] - Sair do jogo");
 		System.out.println("[1] - Hospedaria Satolep");
+		System.out.println("[2] - Consultar a velha Cigana Afrodite");
 	}
 
 	public int obterOpMenu(Scanner scanner) {
@@ -36,7 +47,7 @@ public class Vilarejo {
 			try {
 				System.out.print("\nDigite a opção desejada: ");
 				op = scanner.nextInt();
-				if (op < 0 || op > 1) {
+				if (op < 0 || op > 2) {
 					throw new IllegalArgumentException("Opção inválida, tente novamente.");
 				}
 				inputValido = true;

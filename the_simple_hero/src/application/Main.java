@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
+import entities.Cigana;
 import entities.Energia;
 import entities.Hospedaria;
 import entities.Ouro;
@@ -58,7 +59,7 @@ public class Main {
 					scanner.nextLine();
 					throw new IllegalArgumentException("\n\nDistribuição de pontos inválida. Tente novamente");
 				}
-				personagem = new Personagem(nome, new Energia(null, null), ataque, defesa, new Ouro(20));
+				personagem = new Personagem(nome, new Energia(energia, energia), ataque, defesa, new Ouro(20));
 				personagemValido = true;
 			} catch (InputMismatchException e) {
 				System.out.println("\nInput inválido. Tente novamente.");
@@ -72,7 +73,7 @@ public class Main {
 	}
 
 	public static void iniciarJogo(Scanner scanner, Personagem personagem) {
-		Vilarejo vilarejo = new Vilarejo(new Hospedaria());
+		Vilarejo vilarejo = new Vilarejo(new Hospedaria(), new Cigana());
 		System.out.println(vilarejo.iniciarAventura());
 		int opVilarejo = 0;
 		do {
@@ -86,6 +87,9 @@ public class Main {
 		switch (opMenu) {
 		case 1:
 			vilarejo.getHospedaria().recuperarEnergia(scanner, personagem);
+			break;
+		case 2:
+			vilarejo.getCigana().consultaCigana(personagem, scanner);
 			break;
 		}
 	}
