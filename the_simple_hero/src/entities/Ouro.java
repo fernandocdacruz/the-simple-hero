@@ -20,7 +20,7 @@ public class Ouro {
 	}
 
 	public boolean testarQuantidadeDeOuro(int valorCobrado) {
-		return getQuantidade() < valorCobrado ? true : false;
+	    return getQuantidade() >= valorCobrado;
 	}
 
 	public void debitarQuantidadeDeOuro(int valorADebitar) {

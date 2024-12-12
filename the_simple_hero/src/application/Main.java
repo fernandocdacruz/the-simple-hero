@@ -4,11 +4,16 @@ import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
+import entities.Ataque;
 import entities.Cigana;
+import entities.Defesa;
 import entities.Energia;
 import entities.Hospedaria;
+import entities.Level;
+import entities.LojaDeArmas;
 import entities.Ouro;
 import entities.Personagem;
+import entities.Pocao;
 import entities.Vilarejo;
 
 public class Main {
@@ -59,7 +64,7 @@ public class Main {
 					scanner.nextLine();
 					throw new IllegalArgumentException("\n\nDistribuição de pontos inválida. Tente novamente");
 				}
-				personagem = new Personagem(nome, new Energia(energia, energia), ataque, defesa, new Ouro(20));
+				personagem = new Personagem(new Level(1),nome, new Energia(energia, energia), new Ataque(ataque), new Defesa(defesa), new Ouro(20), new Pocao(3));
 				personagemValido = true;
 			} catch (InputMismatchException e) {
 				System.out.println("\nInput inválido. Tente novamente.");
@@ -73,7 +78,7 @@ public class Main {
 	}
 
 	public static void iniciarJogo(Scanner scanner, Personagem personagem) {
-		Vilarejo vilarejo = new Vilarejo(new Hospedaria(), new Cigana());
+		Vilarejo vilarejo = new Vilarejo(new Hospedaria(), new Cigana(), new LojaDeArmas());
 		System.out.println(vilarejo.iniciarAventura());
 		int opVilarejo = 0;
 		do {
@@ -86,10 +91,16 @@ public class Main {
 	public static void executarOpJogo(int opMenu, Vilarejo vilarejo, Personagem personagem, Scanner scanner) {
 		switch (opMenu) {
 		case 1:
-			vilarejo.getHospedaria().recuperarEnergia(scanner, personagem);
+			System.out.println("\n" + personagem.toString());
 			break;
 		case 2:
+			vilarejo.getHospedaria().recuperarEnergia(scanner, personagem);
+			break;
+		case 3:
 			vilarejo.getCigana().consultaCigana(personagem, scanner);
+			break;
+		case 4:
+			vilarejo.getLojaDeArmas().aaaa(scanner, personagem);
 			break;
 		}
 	}

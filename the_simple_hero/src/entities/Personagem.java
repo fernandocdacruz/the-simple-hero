@@ -4,22 +4,34 @@ import java.util.Scanner;
 
 public class Personagem {
 
+	private Level level;
 	private String nome;
 	private Energia energia;
-	private Integer ataque;
-	private Integer defesa;
+	private Ataque ataque;
+	private Defesa defesa;
 	private Ouro ouro;
+	private Pocao pocao;
 
 	public Personagem() {
 
 	}
 
-	public Personagem(String nome, Energia energia, Integer ataque, Integer defesa, Ouro ouro) {
+	public Personagem(Level level, String nome, Energia energia, Ataque ataque, Defesa defesa, Ouro ouro, Pocao pocao) {
+		this.level = level;
 		this.nome = nome;
 		this.energia = energia;
 		this.ataque = ataque;
 		this.defesa = defesa;
 		this.ouro = ouro;
+		this.pocao = pocao;
+	}
+
+	public Level getLevel() {
+		return level;
+	}
+
+	public void setLevel(Level level) {
+		this.level = level;
 	}
 
 	public String getNome() {
@@ -38,19 +50,19 @@ public class Personagem {
 		this.energia = energia;
 	}
 
-	public Integer getAtaque() {
+	public Ataque getAtaque() {
 		return ataque;
 	}
 
-	public void setAtaque(Integer ataque) {
+	public void setAtaque(Ataque ataque) {
 		this.ataque = ataque;
 	}
 
-	public Integer getDefesa() {
+	public Defesa getDefesa() {
 		return defesa;
 	}
 
-	public void setDefesa(Integer defesa) {
+	public void setDefesa(Defesa defesa) {
 		this.defesa = defesa;
 	}
 
@@ -62,9 +74,17 @@ public class Personagem {
 		this.ouro = ouro;
 	}
 
+	public Pocao getPocao() {
+		return pocao;
+	}
+
+	public void setPocao(Pocao pocao) {
+		this.pocao = pocao;
+	}
+
 	public String toString() {
-		return "Nome: " + getNome() + getEnergia().toString() + "\nAtaque: " + getAtaque() + "\nDefesa: " + getDefesa()
-				+ getOuro().toString();
+		return getLevel().toString() + "\nNome: " + getNome() + getEnergia().toString() + getAtaque().toString() + getDefesa().toString()
+				+ getOuro().toString() + getPocao().toString();
 	}
 
 	public boolean confirmarPersonagem(Scanner scanner) {

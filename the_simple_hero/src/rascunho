@@ -3,3 +3,5 @@
 * Se no futuro houver mais ações no vilarejo, considere usar o padrão Strategy para gerenciar as opções do menu.
 * Comece o jogo com um breve texto que contextualize o jogador na aventura.
 * Algumas validações (como entrada de 's' ou 'n') aparecem em vários lugares. Crie um método auxiliar para reutilizar essa lógica.
+* Corrigir REAMDE e olhar sugestões de melhorias no chat gpt.
+* Criar um npc para a hospedaria.

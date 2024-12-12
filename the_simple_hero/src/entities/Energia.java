@@ -44,5 +44,9 @@ public class Energia {
 	public void completarEnergia() {
 		setEnergiaAtual(getEnergiaTotal());
 	}
+	
+	public void aumentarEnergiaAtual(int aumento) {
+		setEnergiaTotal(energiaTotal + aumento);
+	}
 
 }
