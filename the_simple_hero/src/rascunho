@@ -5,3 +5,5 @@
 * Algumas validações (como entrada de 's' ou 'n') aparecem em vários lugares. Crie um método auxiliar para reutilizar essa lógica.
 * Corrigir REAMDE e olhar sugestões de melhorias no chat gpt.
 * Criar um npc para a hospedaria.
+* Corrigir lógica de compra da loja de armas
+* Atualizar o README depois de corrigir a lógica da loja de armas

@@ -2,12 +2,14 @@ package entities;
 
 import java.util.Scanner;
 
+import utilities.ObterInputs;
+
 public class Hospedaria {
 
 	public Hospedaria() {
 	}
 
-	public void recuperarEnergia(Scanner scanner, Personagem personagem) {
+	public void recuperarEnergia(Scanner scanner, Personagem personagem, ObterInputs obterInputs) {
 		boolean inputValido = false;
 		char op = ' ';
 		while (!inputValido) {
@@ -16,19 +18,13 @@ public class Hospedaria {
 				System.out.println("Gostaria de passar uma noite aqui e descansar com qualidade?");
 				System.out.println("Energia: " + personagem.getEnergia().mostrarDiferencaEnergia());
 				System.out.println("O valor é de 10 moedas de ouro!");
-				System.out.print("\nDigite 's' para sim e 'n' para não: ");
-				op = scanner.next().toString().charAt(0);
-				if (op != 's' && op != 'n') {
-					throw new IllegalArgumentException("\nOpção inválida. Tente novamente");
-				}
+				op = obterInputs.obterChar();
 				inputValido = true;
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
 			if (op == 's') {
 				if (personagem.getOuro().testarQuantidadeDeOuro(10)) {
-					System.out.println("\nVocê não tem ouro suficiente ! Volte outra hora");
-				} else {
 					if (personagem.getEnergia().compararEnergiaTotalEAtual()) {
 						System.out
 								.println("\nParece que você esta bem descansado. Deixe essa dormida para outra hora!");
@@ -40,6 +36,9 @@ public class Hospedaria {
 						System.out.println("Ouro total: " + personagem.getOuro());
 						System.out.println("Volte sempre!");
 					}
+				} else {
+					System.out.println("\nVocê não tem ouro suficiente ! Volte outra hora");
+
 				}
 			} else {
 				String[] frasesAtendente = { "AH, va encomodar outro!", "Ok, volte sempre.",

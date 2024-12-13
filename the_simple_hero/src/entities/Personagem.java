@@ -2,6 +2,8 @@ package entities;
 
 import java.util.Scanner;
 
+import utilities.ObterInputs;
+
 public class Personagem {
 
 	private Level level;
@@ -11,12 +13,13 @@ public class Personagem {
 	private Defesa defesa;
 	private Ouro ouro;
 	private Pocao pocao;
+	private ObterInputs obterInputs;
 
 	public Personagem() {
 
 	}
 
-	public Personagem(Level level, String nome, Energia energia, Ataque ataque, Defesa defesa, Ouro ouro, Pocao pocao) {
+	public Personagem(Level level, String nome, Energia energia, Ataque ataque, Defesa defesa, Ouro ouro, Pocao pocao, ObterInputs obterInputs) {
 		this.level = level;
 		this.nome = nome;
 		this.energia = energia;
@@ -24,6 +27,7 @@ public class Personagem {
 		this.defesa = defesa;
 		this.ouro = ouro;
 		this.pocao = pocao;
+		this.obterInputs = obterInputs;
 	}
 
 	public Level getLevel() {
@@ -82,6 +86,14 @@ public class Personagem {
 		this.pocao = pocao;
 	}
 
+	public ObterInputs getObterInputs() {
+		return obterInputs;
+	}
+
+	public void setObterInputs(ObterInputs obterInputs) {
+		this.obterInputs = obterInputs;
+	}
+
 	public String toString() {
 		return getLevel().toString() + "\nNome: " + getNome() + getEnergia().toString() + getAtaque().toString() + getDefesa().toString()
 				+ getOuro().toString() + getPocao().toString();
@@ -92,11 +104,8 @@ public class Personagem {
 		boolean opValida = false;
 		while (!opValida) {
 			try {
-				System.out.print("\nDeseja alterar o personagem? Digite 's' para sim e 'n' para não: ");
-				char op = scanner.next().toLowerCase().charAt(0);
-				if (op != 's' && op != 'n') {
-					throw new IllegalArgumentException("\nOpção inválida. Tente novamente");
-				}
+				System.out.print("\nDeseja alterar o personagem?");
+				char op = obterInputs.obterChar();
 				scanner.nextLine();
 				if (op == 'n') {
 					valido = false;

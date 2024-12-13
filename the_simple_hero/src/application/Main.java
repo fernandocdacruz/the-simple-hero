@@ -15,6 +15,7 @@ import entities.Ouro;
 import entities.Personagem;
 import entities.Pocao;
 import entities.Vilarejo;
+import utilities.ObterInputs;
 
 public class Main {
 
@@ -22,20 +23,21 @@ public class Main {
 
 		Locale.setDefault(Locale.US);
 		try (Scanner scanner = new Scanner(System.in)) {
+			ObterInputs obterInputs = new ObterInputs();
 			System.out.println("\nTHE SIMPLE HERO\n");
 			System.out.println("\nVamos criar o seu herói!");
-			Personagem personagem = obterPersonagem(scanner);
+			Personagem personagem = obterPersonagem(scanner, obterInputs);
 			System.out.println("\n\nHerói criado!\n");
 			System.out.println(personagem);
 			while (personagem.confirmarPersonagem(scanner)) {
-				obterPersonagem(scanner);
+				obterPersonagem(scanner, obterInputs);
 			}
-			iniciarJogo(scanner, personagem);
+			iniciarJogo(scanner, personagem, obterInputs);
 			System.out.println("\nGAME OVER");
 		}
 	}
 
-	public static Personagem obterPersonagem(Scanner scanner) {
+	public static Personagem obterPersonagem(Scanner scanner, ObterInputs obterInputs) {
 		Personagem personagem = null;
 		boolean personagemValido = false;
 		while (!personagemValido) {
@@ -64,7 +66,7 @@ public class Main {
 					scanner.nextLine();
 					throw new IllegalArgumentException("\n\nDistribuição de pontos inválida. Tente novamente");
 				}
-				personagem = new Personagem(new Level(1),nome, new Energia(energia, energia), new Ataque(ataque), new Defesa(defesa), new Ouro(20), new Pocao(3));
+				personagem = new Personagem(new Level(1),nome, new Energia(energia, energia), new Ataque(ataque), new Defesa(defesa), new Ouro(20), new Pocao(3), obterInputs);
 				personagemValido = true;
 			} catch (InputMismatchException e) {
 				System.out.println("\nInput inválido. Tente novamente.");
@@ -77,30 +79,30 @@ public class Main {
 		return personagem;
 	}
 
-	public static void iniciarJogo(Scanner scanner, Personagem personagem) {
+	public static void iniciarJogo(Scanner scanner, Personagem personagem, ObterInputs obterInputs) {
 		Vilarejo vilarejo = new Vilarejo(new Hospedaria(), new Cigana(), new LojaDeArmas());
 		System.out.println(vilarejo.iniciarAventura());
 		int opVilarejo = 0;
 		do {
 			vilarejo.mostrarMenu();
 			opVilarejo = vilarejo.obterOpMenu(scanner);
-			executarOpJogo(opVilarejo, vilarejo, personagem, scanner);
+			executarOpJogo(opVilarejo, vilarejo, personagem, scanner, obterInputs);
 		} while (opVilarejo != 0);
 	}
 
-	public static void executarOpJogo(int opMenu, Vilarejo vilarejo, Personagem personagem, Scanner scanner) {
+	public static void executarOpJogo(int opMenu, Vilarejo vilarejo, Personagem personagem, Scanner scanner, ObterInputs obterInputs) {
 		switch (opMenu) {
 		case 1:
 			System.out.println("\n" + personagem.toString());
 			break;
 		case 2:
-			vilarejo.getHospedaria().recuperarEnergia(scanner, personagem);
+			vilarejo.getHospedaria().recuperarEnergia(scanner, personagem, obterInputs);
 			break;
 		case 3:
-			vilarejo.getCigana().consultaCigana(personagem, scanner);
+			vilarejo.getCigana().consultaCigana(personagem, scanner, obterInputs);
 			break;
 		case 4:
-			vilarejo.getLojaDeArmas().aaaa(scanner, personagem);
+			vilarejo.getLojaDeArmas().comprarArmas(scanner, personagem, obterInputs);
 			break;
 		}
 	}

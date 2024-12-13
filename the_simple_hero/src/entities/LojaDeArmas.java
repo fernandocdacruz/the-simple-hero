@@ -3,23 +3,21 @@ package entities;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import utilities.ObterInputs;
+
 public class LojaDeArmas {
 
 	public LojaDeArmas() {
 	}
 
-	public void aaaa(Scanner scanner, Personagem personagem) {
+	public void comprarArmas(Scanner scanner, Personagem personagem, ObterInputs obterInputs) {
 		boolean inputValido = false;
 		char op = ' ';
 		while (!inputValido) {
 			try {
 				System.out.println("\nBem vindo a Loja de Armas da XV!! Me chamo Samarone, em que posso ajudar?");
 				System.out.println("\nDeseja comprar alguma coisa?");
-				System.out.print("\nDigite 's' para sim e 'n' para não: ");
-				op = scanner.next().toString().charAt(0);
-				if (op != 's' && op != 'n') {
-					throw new IllegalArgumentException("\nOpção inválida. Tente novamente");
-				}
+				op = obterInputs.obterChar();
 				inputValido = true;
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
@@ -46,11 +44,7 @@ public class LojaDeArmas {
 								inputValido = true;
 							} else {
 								int[] valores = { 0, 25, 25, 60, 80 };
-								if (!personagem.getOuro().testarQuantidadeDeOuro(valores[menuOp])) {
-									System.out.println(
-											"\nMe desculpe, mas você não possui o valor necessário. Tente de novo uma próxima vez.");
-								} else {
-
+								if (personagem.getOuro().testarQuantidadeDeOuro(valores[menuOp])) {
 									switch (menuOp) {
 									case 1:
 										personagem.getAtaque().aumentarAtaqueAtual(1);
@@ -67,8 +61,10 @@ public class LojaDeArmas {
 									}
 									personagem.getOuro().debitarQuantidadeDeOuro(valores[menuOp]);
 									System.out.println("\nMuito bom fazer negócios com você.");
+								} else {
+									System.out.println(
+											"\nMe desculpe, mas você não possui o valor necessário. Tente de novo uma próxima vez.");
 								}
-
 							}
 						}
 					} catch (InputMismatchException e) {

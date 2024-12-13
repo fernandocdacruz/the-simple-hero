@@ -3,6 +3,8 @@ package entities;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import utilities.ObterInputs;
+
 public class Vilarejo {
 
 	private Hospedaria hospedaria;

@@ -2,6 +2,8 @@ package entities;
 
 import java.util.Scanner;
 
+import utilities.ObterInputs;
+
 public class Cigana {
 
 	public Cigana() {
@@ -23,7 +25,7 @@ public class Cigana {
 			"Algumas portas se abrem para o sucesso, outras só dão em banheiros mal limpos.",
 			"Não mexa com o que está quieto, exceto se for um baú brilhando no canto da sala." };
 
-	public void consultaCigana(Personagem personagem, Scanner scanner) {
+	public void consultaCigana(Personagem personagem, Scanner scanner, ObterInputs obterInputs) {
 		boolean inputValido = false;
 		char op = ' ';
 		while (!inputValido) {
@@ -31,11 +33,7 @@ public class Cigana {
 				System.out.println("\nEstava a sua espera " + personagem.getNome() + ", você esta 15 minutos atrasado.");
 				System.out.println("Enfim, gostaria de um conselho?");
 				System.out.println("Não vou lhe cobrar nada... Por agora... HA HA HA!");
-				System.out.print("\nDigite 's' para sim e 'n' para não: ");
-				op = scanner.next().toString().charAt(0);
-				if (op != 's' && op != 'n') {
-					throw new IllegalArgumentException("\nOpção inválida. Tente novamente");
-				}
+				op = obterInputs.obterChar();
 				inputValido = true;
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
