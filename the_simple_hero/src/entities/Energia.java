@@ -48,5 +48,13 @@ public class Energia {
 	public void aumentarEnergiaAtual(int aumento) {
 		setEnergiaTotal(energiaTotal + aumento);
 	}
+	
+	public boolean checarEnergia() {
+		return energiaAtual <= 0 ? true : false;
+	}
+	
+	public void receberDano(int dano) {
+		setEnergiaAtual(energiaAtual - dano);
+	}
 
 }

@@ -10,11 +10,15 @@ public class Vilarejo {
 	private Hospedaria hospedaria;
 	private Cigana cigana;
 	private LojaDeArmas lojaDeArmas;
+	private Floresta floresta;
+	private Batalha batalha;
 
-	public Vilarejo(Hospedaria hospedaria, Cigana cigana, LojaDeArmas lojaDeArmas) {
+
+	public Vilarejo(Hospedaria hospedaria, Cigana cigana, LojaDeArmas lojaDeArmas, Floresta floresta) {
 		this.hospedaria = hospedaria;
 		this.cigana = cigana;
 		this.lojaDeArmas = lojaDeArmas;
+		this.floresta = floresta;
 	}
 
 	public Hospedaria getHospedaria() {
@@ -24,7 +28,7 @@ public class Vilarejo {
 	public void setHospedaria(Hospedaria hospedaria) {
 		this.hospedaria = hospedaria;
 	}
-	
+
 	public Cigana getCigana() {
 		return cigana;
 	}
@@ -32,7 +36,7 @@ public class Vilarejo {
 	public void setCigana(Cigana cigana) {
 		this.cigana = cigana;
 	}
-	
+
 	public LojaDeArmas getLojaDeArmas() {
 		return lojaDeArmas;
 	}
@@ -41,10 +45,18 @@ public class Vilarejo {
 		this.lojaDeArmas = lojaDeArmas;
 	}
 
+	public Floresta getFloresta() {
+		return floresta;
+	}
+
+	public void setFloresta(Floresta floresta) {
+		this.floresta = floresta;
+	}
+
 	public String iniciarAventura() {
 		return "\nBem vindo ao Vilarejo Satolep!! Boa sorte na sua jornada.";
 	}
-
+	
 	public void mostrarMenu() {
 		System.out.println("\nOnde você deseja ir:");
 		System.out.println("\n[0] - Sair do jogo");
@@ -52,6 +64,7 @@ public class Vilarejo {
 		System.out.println("[2] - Hospedaria Satolep");
 		System.out.println("[3] - Consultar a velha Cigana Afrodite");
 		System.out.println("[4] - Loja de Armas do Samarone");
+		System.out.println("[5] - Ir para floresta");
 	}
 
 	public int obterOpMenu(Scanner scanner) {
@@ -61,7 +74,7 @@ public class Vilarejo {
 			try {
 				System.out.print("\nDigite a opção desejada: ");
 				op = scanner.nextInt();
-				if (op < 0 || op > 4) {
+				if (op < 0 || op > 5) {
 					throw new IllegalArgumentException("Opção inválida, tente novamente.");
 				}
 				inputValido = true;

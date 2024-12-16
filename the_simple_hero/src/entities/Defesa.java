@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Random;
+
 public class Defesa {
 
 	private Integer defesa;
@@ -25,6 +27,11 @@ public class Defesa {
 	
 	public void aumentarDefesaAtual(int valor) {
 		setDefesa(getDefesa() + valor);
+	}
+	
+	public int defender() {
+		Random random = new Random();
+		return random.nextInt(getDefesa() + 1);
 	}
 	
 }

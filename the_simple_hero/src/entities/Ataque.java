@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Random;
+
 public class Ataque {
 
 	private Integer ataque;
@@ -25,6 +27,11 @@ public class Ataque {
 	
 	public void aumentarAtaqueAtual(int valor) {
 		setAtaque(getAtaque() + valor);
+	}
+	
+	public int atacar() {
+		Random random = new Random();
+		return random.nextInt(getAtaque() + 1);
 	}
 	
 }

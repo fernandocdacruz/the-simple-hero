@@ -5,9 +5,11 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import entities.Ataque;
+import entities.Batalha;
 import entities.Cigana;
 import entities.Defesa;
 import entities.Energia;
+import entities.Floresta;
 import entities.Hospedaria;
 import entities.Level;
 import entities.LojaDeArmas;
@@ -80,7 +82,7 @@ public class Main {
 	}
 
 	public static void iniciarJogo(Scanner scanner, Personagem personagem, ObterInputs obterInputs) {
-		Vilarejo vilarejo = new Vilarejo(new Hospedaria(), new Cigana(), new LojaDeArmas());
+		Vilarejo vilarejo = new Vilarejo(new Hospedaria(), new Cigana(), new LojaDeArmas(), new Floresta(new Batalha()));
 		System.out.println(vilarejo.iniciarAventura());
 		int opVilarejo = 0;
 		do {
@@ -104,6 +106,8 @@ public class Main {
 		case 4:
 			vilarejo.getLojaDeArmas().comprarArmas(scanner, personagem, obterInputs);
 			break;
+		case 5:
+			vilarejo.getFloresta().getBatalha().iniciarBatalha(personagem, scanner);
 		}
 	}
 
