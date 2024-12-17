@@ -33,7 +33,7 @@ public class Hospedaria {
 						personagem.getOuro().debitarQuantidadeDeOuro(10);
 						personagem.getEnergia().completarEnergia();
 						System.out.println("Energias renovadas: " + personagem.getEnergia().mostrarDiferencaEnergia());
-						System.out.println("Ouro total: " + personagem.getOuro());
+						System.out.println("Ouro total: " + personagem.getOuro().getQuantidade());
 						System.out.println("Volte sempre!");
 					}
 				} else {

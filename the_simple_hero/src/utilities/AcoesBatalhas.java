@@ -1,5 +1,6 @@
 package utilities;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import entities.Adversario;
@@ -45,12 +46,30 @@ public class AcoesBatalhas {
 	}
 	
 	public void roundPersonagem() {
-		System.out.println("\n" + personagem.getEnergia().mostrarDiferencaEnergia());
-		System.out.println("\n[1] - Atacar");
-		System.out.print("\nDigite a opção desejada: ");
-		int op = scanner.nextInt();
+		boolean inputValido = false;
+		int op = 0;
+		while (!inputValido) {
+			try {
+				System.out.println("\n" + personagem.getEnergia().mostrarDiferencaEnergia());
+				System.out.println("\n[1] - Atacar");
+				System.out.println("[2] - Usar poção");
+				System.out.print("\nDigite a opção desejada: ");
+				op = scanner.nextInt();
+				inputValido = true;
+				if (op < 1 || op > 3) {
+					throw new IllegalArgumentException("\nOpção inválida. Tente novamente.");
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("\nInput inválido. Tente novamente.");
+				scanner.next();
+			}	catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 		switch (op) {
 		case 1: causarDanoAdversario();
+			break;
+		case 2: personagem.usarPocao();
 			break;
 		}
 	}
@@ -60,9 +79,10 @@ public class AcoesBatalhas {
 		int defesa = adversario.getDefesa().defender();
 		int totalDeDano = ataque - defesa;
 		if (totalDeDano > 0) {
-			System.out.println("teste");
 			System.out.println("\nAtaque realizado com sucesso. Total de dano: " + totalDeDano);
 			adversario.getEnergia().receberDano(totalDeDano);
+		} else {
+			System.out.println("\nSeu adversário se defendeu com muita habilidade. Tente novamente com mais vontade.");
 		}
 	}
 	
@@ -74,6 +94,8 @@ public class AcoesBatalhas {
 		if (totalDeDano > 0) {
 			System.out.println("\nAtaque realizado com sucesso. Total de dano: " + totalDeDano);
 			personagem.getEnergia().receberDano(totalDeDano);
+		} else {
+			System.out.println("\nSua defesa foi perfeita, o adversário não conseguiu causar dano a você.");
 		}
 	}
 	

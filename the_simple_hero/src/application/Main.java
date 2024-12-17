@@ -97,16 +97,19 @@ public class Main {
 		case 1:
 			System.out.println("\n" + personagem.toString());
 			break;
-		case 2:
-			vilarejo.getHospedaria().recuperarEnergia(scanner, personagem, obterInputs);
+		case 2: 
+			personagem.usarPocao();
 			break;
 		case 3:
-			vilarejo.getCigana().consultaCigana(personagem, scanner, obterInputs);
+			vilarejo.getHospedaria().recuperarEnergia(scanner, personagem, obterInputs);
 			break;
 		case 4:
-			vilarejo.getLojaDeArmas().comprarArmas(scanner, personagem, obterInputs);
+			vilarejo.getCigana().consultaCigana(personagem, scanner, obterInputs);
 			break;
 		case 5:
+			vilarejo.getLojaDeArmas().comprarArmas(scanner, personagem, obterInputs);
+			break;
+		case 6:
 			vilarejo.getFloresta().getBatalha().iniciarBatalha(personagem, scanner);
 		}
 	}

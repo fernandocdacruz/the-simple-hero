@@ -95,7 +95,7 @@ public class Personagem {
 	}
 
 	public String toString() {
-		return getLevel().toString() + "\nNome: " + getNome() + getEnergia().toString() + getAtaque().toString() + getDefesa().toString()
+		return getLevel().toString() + getLevel().totalXp() + "\nNome: " + getNome() + "\nEnergia: " + getEnergia().mostrarDiferencaEnergia() + getAtaque().toString() + getDefesa().toString()
 				+ getOuro().toString() + getPocao().toString();
 	}
 
@@ -116,6 +116,32 @@ public class Personagem {
 			}
 		}
 		return valido;
+	}
+	
+	public void usarPocao() {
+		if (getPocao().getQuantidade() == 0) {
+			System.out.println("\nVocê não possui mais poções!!");
+		} else {
+			if (getEnergia().compararEnergiaTotalEAtual()) {
+				System.out.println("\nSua energia já esta completa!!");
+			} else {
+				getEnergia().completarEnergia();
+				getPocao().setQuantidade(getPocao().getQuantidade() - 1);
+				System.out.println("\nVocê esta revigorado!!");
+				System.out.println("Energia: " + getEnergia().mostrarDiferencaEnergia());
+			}
+		}
+	}
+	
+	public void testarLevel(int xp) {
+		getLevel().ganharXp(xp);
+		boolean aumentarLevel = getLevel().aumentarLevel();
+		if (aumentarLevel) {
+			getEnergia().aumentarEnergiaAtual(10);
+			getEnergia().completarEnergia();
+			getAtaque().aumentarAtaqueAtual(5);
+			getDefesa().aumentarDefesaAtual(5);
+		}
 	}
 
 }

@@ -26,6 +26,10 @@ public class Ouro {
 	public void debitarQuantidadeDeOuro(int valorADebitar) {
 		setQuantidade(getQuantidade() - valorADebitar);
 	}
+	
+	public void adicionarQuantidadeDeOuro(int valorAAdicionar) {
+		setQuantidade(getQuantidade() + valorAAdicionar);
+	}
 
 	public String toString() {
 		return "\nOuro: " + getQuantidade();

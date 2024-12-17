@@ -61,10 +61,11 @@ public class Vilarejo {
 		System.out.println("\nOnde você deseja ir:");
 		System.out.println("\n[0] - Sair do jogo");
 		System.out.println("[1] - Status do meu personagem");
-		System.out.println("[2] - Hospedaria Satolep");
-		System.out.println("[3] - Consultar a velha Cigana Afrodite");
-		System.out.println("[4] - Loja de Armas do Samarone");
-		System.out.println("[5] - Ir para floresta");
+		System.out.println("[2] - Usar poção");
+		System.out.println("[3] - Hospedaria Satolep");
+		System.out.println("[4] - Consultar a velha Cigana Afrodite");
+		System.out.println("[5] - Loja de Armas do Samarone");
+		System.out.println("[6] - Ir para floresta");
 	}
 
 	public int obterOpMenu(Scanner scanner) {
@@ -74,7 +75,7 @@ public class Vilarejo {
 			try {
 				System.out.print("\nDigite a opção desejada: ");
 				op = scanner.nextInt();
-				if (op < 0 || op > 5) {
+				if (op < 0 || op > 6) {
 					throw new IllegalArgumentException("Opção inválida, tente novamente.");
 				}
 				inputValido = true;
