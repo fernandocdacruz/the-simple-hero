@@ -3,15 +3,15 @@ package utilities;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import entities.Adversario;
-import entities.Personagem;
+import model.characters.Personagem;
+import model.npc.Adversario;
 
 public class AcoesBatalhas {
-	
+
 	private Personagem personagem;
 	private Adversario adversario;
 	private Scanner scanner;
-	
+
 	public AcoesBatalhas() {
 	}
 
@@ -36,15 +36,15 @@ public class AcoesBatalhas {
 	public void setAdversario(Adversario adversario) {
 		this.adversario = adversario;
 	}
-	
+
 	public boolean checarEnergiaPersonagem() {
 		return personagem.getEnergia().checarEnergia() ? true : false;
 	}
-	
+
 	public boolean checarEnergiaAdversario() {
 		return adversario.getEnergia().checarEnergia() ? true : false;
 	}
-	
+
 	public void roundPersonagem() {
 		boolean inputValido = false;
 		int op = 0;
@@ -55,25 +55,28 @@ public class AcoesBatalhas {
 				System.out.println("[2] - Usar poção");
 				System.out.print("\nDigite a opção desejada: ");
 				op = scanner.nextInt();
-				inputValido = true;
-				if (op < 1 || op > 3) {
+				if (op < 1 || op > 2) {
 					throw new IllegalArgumentException("\nOpção inválida. Tente novamente.");
 				}
+				inputValido = true;
 			} catch (InputMismatchException e) {
 				System.out.println("\nInput inválido. Tente novamente.");
 				scanner.next();
-			}	catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
 		}
+
 		switch (op) {
-		case 1: causarDanoAdversario();
+		case 1:
+			causarDanoAdversario();
 			break;
-		case 2: personagem.usarPocao();
+		case 2:
+			personagem.usarPocao();
 			break;
 		}
 	}
-	
+
 	public void causarDanoAdversario() {
 		int ataque = personagem.getAtaque().atacar();
 		int defesa = adversario.getDefesa().defender();
@@ -85,7 +88,7 @@ public class AcoesBatalhas {
 			System.out.println("\nSeu adversário se defendeu com muita habilidade. Tente novamente com mais vontade.");
 		}
 	}
-	
+
 	public void causarDanoPersonagem() {
 		System.out.println("\nAgora é a vez do seu adversário atacar !! Defendasse !!");
 		int ataque = adversario.getAtaque().atacar();
@@ -98,5 +101,5 @@ public class AcoesBatalhas {
 			System.out.println("\nSua defesa foi perfeita, o adversário não conseguiu causar dano a você.");
 		}
 	}
-	
+
 }

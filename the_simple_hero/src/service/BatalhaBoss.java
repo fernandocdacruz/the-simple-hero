@@ -1,19 +1,24 @@
-package entities;
+package service;
 
-import java.util.Random;
 import java.util.Scanner;
 
+import model.characters.Ataque;
+import model.characters.Defesa;
+import model.characters.Energia;
+import model.characters.Personagem;
+import model.npc.Adversario;
 import utilities.AcoesBatalhas;
 import utilities.ObterInputs;
 
-public class Batalha {
+public class BatalhaBoss implements Batalha {
 
+	@Override
 	public void iniciarBatalha(Personagem personagem, Scanner scanner) {
 
 		ObterInputs obter = new ObterInputs();
 		Adversario adversario = obterAdversario();
 		AcoesBatalhas acoes = new AcoesBatalhas(personagem, adversario, scanner);
-		System.out.println("\nAchamos um adversário na floresta, é hora de enfrenta-lo!");
+		System.out.println("\nFinalmente chegamos no local desejado nas montanhas, e achamos o líder dessa balburdia. \nÉ hora de enfrenta-lo!");
 		System.out.println("\nÉ o " + adversario.getNome() + "!! Tome cuidado.");
 		System.out.println("Deseja fugir?");
 		char op = obter.obterChar();
@@ -27,15 +32,12 @@ public class Batalha {
 				acoes.roundPersonagem();
 				if (acoes.checarEnergiaAdversario()) {
 					adversarioVivo = false;
-					System.out.println("\nFim de luta. Você venceu.");
-					System.out.println("E ganhou " + adversario.getOuro() + " de ouro.");
-					System.out.println("E " + adversario.getXp() + " de XP.");
-					personagem.testarLevel(adversario.getXp());
-					personagem.getOuro().adicionarQuantidadeDeOuro(adversario.getOuro());
+					System.out.println("\nFim de luta. Você venceu e acabou com todo o caos que dominava o vilarejo.");
 				} else {
 					acoes.causarDanoPersonagem();
-					if (acoes.checarEnergiaAdversario()) {
+					if (acoes.checarEnergiaPersonagem()) {
 						personagemVivo = false;
+						personagem.getEnergia().completarEnergia();
 						System.out.println("\nFim de luta. Você perdeu.");
 					}
 				}
@@ -45,21 +47,9 @@ public class Batalha {
 
 	}
 
+	@Override
 	public Adversario obterAdversario() {
-		Adversario adversario = null;
-		Random random = new Random();
-		int opAdversario = random.nextInt(3) + 1;
-		switch (opAdversario) {
-		case 1:
-			adversario = new Adversario("Margina", new Energia(20, 20), new Ataque(10), new Defesa(10), 5, 5);
-			break;
-		case 2:
-			adversario = new Adversario("Maloca", new Energia(30, 30), new Ataque(15), new Defesa(15), 10, 10);
-			break;
-		case 3:
-			adversario = new Adversario("Lebéia", new Energia(40, 40), new Ataque(20), new Defesa(20), 15, 15);
-			break;
-		}
+		Adversario adversario = new Adversario("Marcola do PCC", new Energia(300, 300), new Ataque(100), new Defesa(100), 0, 0);
 		return adversario;
 	}
 

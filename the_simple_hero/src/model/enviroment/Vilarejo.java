@@ -1,9 +1,12 @@
-package entities;
+package model.enviroment;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import utilities.ObterInputs;
+import model.npc.Cigana;
+import model.npc.Hospedaria;
+import model.npc.LojaDeArmas;
+import service.BatalhaComum;
 
 public class Vilarejo {
 
@@ -11,14 +14,15 @@ public class Vilarejo {
 	private Cigana cigana;
 	private LojaDeArmas lojaDeArmas;
 	private Floresta floresta;
-	private Batalha batalha;
+	private Montanhas montanhas;
 
 
-	public Vilarejo(Hospedaria hospedaria, Cigana cigana, LojaDeArmas lojaDeArmas, Floresta floresta) {
+	public Vilarejo(Hospedaria hospedaria, Cigana cigana, LojaDeArmas lojaDeArmas, Floresta floresta, Montanhas montanhas) {
 		this.hospedaria = hospedaria;
 		this.cigana = cigana;
 		this.lojaDeArmas = lojaDeArmas;
 		this.floresta = floresta;
+		this.montanhas = montanhas;
 	}
 
 	public Hospedaria getHospedaria() {
@@ -53,6 +57,14 @@ public class Vilarejo {
 		this.floresta = floresta;
 	}
 
+	public Montanhas getMontanhas() {
+		return montanhas;
+	}
+
+	public void setMontanhas(Montanhas montanhas) {
+		this.montanhas = montanhas;
+	}
+
 	public String iniciarAventura() {
 		return "\nBem vindo ao Vilarejo Satolep!! Boa sorte na sua jornada.";
 	}
@@ -66,6 +78,7 @@ public class Vilarejo {
 		System.out.println("[4] - Consultar a velha Cigana Afrodite");
 		System.out.println("[5] - Loja de Armas do Samarone");
 		System.out.println("[6] - Ir para floresta");
+		System.out.println("[7] - Ir para as montanhas");
 	}
 
 	public int obterOpMenu(Scanner scanner) {
@@ -75,7 +88,7 @@ public class Vilarejo {
 			try {
 				System.out.print("\nDigite a opção desejada: ");
 				op = scanner.nextInt();
-				if (op < 0 || op > 6) {
+				if (op < 0 || op > 7) {
 					throw new IllegalArgumentException("Opção inválida, tente novamente.");
 				}
 				inputValido = true;

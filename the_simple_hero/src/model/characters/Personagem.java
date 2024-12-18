@@ -1,4 +1,4 @@
-package entities;
+package model.characters;
 
 import java.util.Scanner;
 

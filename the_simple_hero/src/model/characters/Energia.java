@@ -1,4 +1,4 @@
-package entities;
+package model.characters;
 
 public class Energia {
 

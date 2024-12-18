@@ -1,8 +1,9 @@
-package entities;
+package model.npc;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import model.characters.Personagem;
 import utilities.ObterInputs;
 
 public class LojaDeArmas {
@@ -29,6 +30,7 @@ public class LojaDeArmas {
 						inputValido = false;
 						while (!inputValido) {
 							System.out.println("\nCerto, o que você deseja comprar?");
+							System.out.println(personagem.getOuro().toString());
 							System.out.println("\n[0] - Sair");
 							System.out.println("[1] - +1 de ataque, 25 de ouro");
 							System.out.println("[2] - +1 de defesa, 25 de ouro");

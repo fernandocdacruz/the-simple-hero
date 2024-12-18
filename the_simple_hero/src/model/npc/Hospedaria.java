@@ -1,7 +1,8 @@
-package entities;
+package model.npc;
 
 import java.util.Scanner;
 
+import model.characters.Personagem;
 import utilities.ObterInputs;
 
 public class Hospedaria {

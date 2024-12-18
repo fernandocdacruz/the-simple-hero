@@ -1,6 +1,10 @@
-package entities;
+package model.npc;
 
 import java.util.Random;
+
+import model.characters.Ataque;
+import model.characters.Defesa;
+import model.characters.Energia;
 
 public class Adversario {
 

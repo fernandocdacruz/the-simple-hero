@@ -4,19 +4,21 @@ import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
-import entities.Ataque;
-import entities.Batalha;
-import entities.Cigana;
-import entities.Defesa;
-import entities.Energia;
-import entities.Floresta;
-import entities.Hospedaria;
-import entities.Level;
-import entities.LojaDeArmas;
-import entities.Ouro;
-import entities.Personagem;
-import entities.Pocao;
-import entities.Vilarejo;
+import model.characters.Ataque;
+import model.characters.Defesa;
+import model.characters.Energia;
+import model.characters.Level;
+import model.characters.Ouro;
+import model.characters.Personagem;
+import model.characters.Pocao;
+import model.enviroment.Floresta;
+import model.enviroment.Montanhas;
+import model.enviroment.Vilarejo;
+import model.npc.Cigana;
+import model.npc.Hospedaria;
+import model.npc.LojaDeArmas;
+import service.BatalhaBoss;
+import service.BatalhaComum;
 import utilities.ObterInputs;
 
 public class Main {
@@ -82,7 +84,7 @@ public class Main {
 	}
 
 	public static void iniciarJogo(Scanner scanner, Personagem personagem, ObterInputs obterInputs) {
-		Vilarejo vilarejo = new Vilarejo(new Hospedaria(), new Cigana(), new LojaDeArmas(), new Floresta(new Batalha()));
+		Vilarejo vilarejo = new Vilarejo(new Hospedaria(), new Cigana(), new LojaDeArmas(), new Floresta(new BatalhaComum()), new Montanhas(new BatalhaBoss()));
 		System.out.println(vilarejo.iniciarAventura());
 		int opVilarejo = 0;
 		do {
@@ -111,6 +113,10 @@ public class Main {
 			break;
 		case 6:
 			vilarejo.getFloresta().getBatalha().iniciarBatalha(personagem, scanner);
+			break;
+		case 7:
+			vilarejo.getMontanhas().getBatalha().iniciarBatalha(personagem, scanner);
+			break;
 		}
 	}
 
